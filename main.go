@@ -9,45 +9,56 @@ import (
 
 func main() {
 
-	var response_reg int
-	var email string
-	var password string
+	var approve bool
 
-	fmt.Print("Hello, what do you want to do.\n\nFunctions:\n\n1 - log in into existing account\n2 - create a new account\n\n")
-	fmt.Scan(&response_reg)
+	var scan int
+	
 
-	if response_reg == 1{
+	response := log_reg()
 
-		// getting data
-		fmt.Print("\n\nTo log in into your account, please, input your email:\n\n")
-		fmt.Scan(&email)
-		fmt.Print("\n\nNow, please, input your password:\n\n")
-		fmt.Scan(&password)
+    // log in or sign up 
+	if response == "try again"{ // first attempt
 
+		response = log_reg()
 
-        // checking if email and password match 
-		if CheckPassword(email, password) == true{
-			fmt.Println("\n\nAccess approved.")
+		if response == "try again"{ // second attempt
 
-		}else{fmt.Println("\n\nAccess denied. Check your data.")}
+			fmt.Println("Your activity is strange for us. Bye!")
 
+			approve = false // if user was not able to log in or sign up, then we refuse his other attempts to log in
 
-	}else{
+		}
+	}
 
-		// getting data
-		fmt.Print("\n\nTo create a new account, please, input your email:\n\n")
-		fmt.Scan(&email)
-		fmt.Print("\n\nNow, please, input your password:\n\n")
-		fmt.Scan(&password)
+    // if user was approved by the syste,
+	if approve == true{
 
-		if CreateAccount(email, password) == true{ // creating account
-			fmt.Println("\n\nAccess approved.")
-		}else{
-			fmt.Println("\n\nSomething went wrong. Restart application.")
+		fmt.Print("\n\n------------------------------\n\n")
+		fmt.Printf("\n\nHello, %s .\n\nWhat do you want to do?\n\n1 - write email\n2 - check your inbox\n3 - leave app\n\n", response)
+
+		
+
+		for{
+
+			fmt.Scan(&scan)
+
+			switch scan{
+
+			case 3: break
+
+			case 1:
+				write email 
+
+			case 2:
+				check inbox
+
+			}
+
+			fmt.Print("\n\nDONE! \n\nWhat do you want to do next?\n\n1 - write email\n2 - check your inbox\n3 - leave app\n\n")
+			
 		}
 
 	}
-
 
 }
 

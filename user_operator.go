@@ -41,7 +41,7 @@ func CreateAccount(email, password string) bool{
 
 
 	if err != nil {
-		log.Fatal(err)
+		return false
 	}
 
 
@@ -52,7 +52,7 @@ func CreateAccount(email, password string) bool{
 	
 
 	if _, err := stmt.Exec(email, password); err != nil {
-		log.Fatal(err)
+		return false
 	}
 
 
