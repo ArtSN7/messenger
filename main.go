@@ -13,6 +13,7 @@ func main() {
 
 	var scan int
 	
+	approve = true
 
 	response := log_reg()
 
@@ -44,16 +45,20 @@ func main() {
 
 			switch scan{
 
-			case 3: break
+			case 3: approve = false
 
 			case 1:
-				write email 
+				_ = WriteEmail(response) 
 
 			case 2:
-				check inbox
+				_ = CheckInbox(response)
 
 			}
 
+			if approve == false{
+				break
+			}
+			
 			fmt.Print("\n\nDONE! \n\nWhat do you want to do next?\n\n1 - write email\n2 - check your inbox\n3 - leave app\n\n")
 			
 		}
